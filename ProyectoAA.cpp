@@ -38,9 +38,9 @@ void MenuOcupaciones()//Imprime el menú de ocupaciones
 
 /*
 
-Prioridades: (usar solo las primeras 3)
-Estudiante:     Escuela > Biblioteca > Papeleria > Hospital > Carniceria > Super > Tortilleria > Tienda > Farmacia > Iglesia > Tlapaleria
-Ama de casa:    Super > Carniceria > Tienda > Tortilleria > Hospital > Farmacia > Biblioteca > Papelería > Escuela > Gimnasio > Nutriologo
+Prioridades: (usar solo las primeras 3 de cada uno)
+Estudiante:     Escuela > Biblioteca > Papeleria > Hospital > Carniceria > Super > Tortilleria > Tienda > Farmacia > Nutriologo > Gimnasio
+Ama de casa:    Super > Carniceria > Tienda > Tortilleria > Hospital > Farmacia > Biblioteca > Papeleria > Escuela > Gimnasio > Nutriologo
 Medico:         Hospital > Farmacia > Super > Biblioteca > Papeleria > Tienda > Tortilleria > Carnicería >  Gimnasio > Nutriologo > Escuela
 Deportista:     Gimnasio > Carniceria > Nutriologo > Super > Tienda > Tortilleria > Hospital > Farmacia > Papeleria > Biblioteca > Escuela 
 
@@ -51,7 +51,7 @@ int main()
     int opcion;
     MenuOcupaciones();
 
-    printf("\33[0;32m  Cúal se acopla más a tus necesisdades? \33[0;0m");
+    printf("\33[0;32m  Elige la opcion que se acople mas a tus necesisdades? \33[0;0m");
     scanf("%i",&opcion);
     fflushh();
 

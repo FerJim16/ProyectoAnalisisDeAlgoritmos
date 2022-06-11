@@ -5,9 +5,9 @@ Primero definir las prioridades para un gready (como mochila)
 
 Generar banderas para saber si se trata de casa o 
 establecimiento, en caso de ser establecimiento, 
-saber cuál es y si está disponible
+saber cual es y si esta disponible
 Banderas:
-(X)Está ocupada ya
+(X)Esta ocupada ya
 (X)Es casa
 (X)Es establecimiento
 
@@ -32,7 +32,7 @@ void MenuOcupaciones()//Imprime el menú de ocupaciones
     system("clear");
     printf("\33[0;44m     (1) Estudiante      \n");
     printf("     (2) Ama de casa     \n");
-    printf("     (3) Médico          \n");
+    printf("     (3) Medico          \n");
     printf("     (4) Deportista      \33[0;0m\n\n");
 } 
 
@@ -41,7 +41,7 @@ void MenuOcupaciones()//Imprime el menú de ocupaciones
 Prioridades: (usar solo las primeras 3 de cada uno)
 Estudiante:     Escuela > Biblioteca > Papeleria > Hospital > Carniceria > Super > Tortilleria > Tienda > Farmacia > Nutriologo > Gimnasio
 Ama de casa:    Super > Carniceria > Tienda > Tortilleria > Hospital > Farmacia > Biblioteca > Papeleria > Escuela > Gimnasio > Nutriologo
-Medico:         Hospital > Farmacia > Super > Biblioteca > Papeleria > Tienda > Tortilleria > Carnicería >  Gimnasio > Nutriologo > Escuela
+Medico:         Hospital > Farmacia > Super > Biblioteca > Papeleria > Tienda > Tortilleria > Carniceria >  Gimnasio > Nutriologo > Escuela
 Deportista:     Gimnasio > Carniceria > Nutriologo > Super > Tienda > Tortilleria > Hospital > Farmacia > Papeleria > Biblioteca > Escuela 
 
 */
@@ -51,7 +51,7 @@ int main()
     int opcion;
     MenuOcupaciones();
 
-    printf("\33[0;32m  Elige la opcion que se acople mas a tus necesisdades? \33[0;0m");
+    printf("\33[0;32m  Elige la opcion que se acople mas a tus necesisdades:\t \33[0;0m");
     scanf("%i",&opcion);
     fflushh();
 
@@ -71,7 +71,7 @@ int main()
         break;
     
     default:
-        printf("\33[0;31m Valor no definido \33[0;0m \n");
+        printf("\33[0;31m Opcion no definida en el menu \33[0;0m \n");
         break;
     }
 

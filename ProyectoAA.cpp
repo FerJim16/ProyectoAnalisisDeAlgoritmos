@@ -1,3 +1,17 @@
+/*
+
+Primero definir las prioridades para un gready (como mochila)
+
+
+Generar banderas para saber si se trata de casa o 
+establecimiento, en caso de ser establecimiento, 
+saber cuál es y si está disponible
+
+*/
+
+
+
+
 #include <iostream>
 #include <stdio.h>
 #include <vector>
@@ -20,6 +34,16 @@ void MenuOcupaciones()//Imprime el menú de ocupaciones
     printf("     (4) Trabajador      \n");
     printf("     (5) Deportista      \33[0;0m\n\n");
 } 
+
+/*
+Prioridades:
+Estudiante:Escuela > Biblioteca > Papeleria > Hospital > Carniceria > Super > Tortilleria > Tienda > Farmacia > Iglesia > Tlapaleria
+Ama de casa:
+Medico:
+Trabajador:
+Deportista:
+
+*/
 
 int main()
 {

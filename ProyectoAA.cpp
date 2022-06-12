@@ -11,6 +11,8 @@ Banderas:
 (X)Es casa
 (X)Es establecimiento
 
+El dijkstra debe retornar el valor del peso mas corto
+
 */
 
 
@@ -20,6 +22,10 @@ Banderas:
 #include <algorithm> // sort
 #include <string.h> // memset
 using namespace std;
+
+#define CASAS 10; //Define el número de nodos de tipo casa que usamos
+
+
 void fflushh(void)
 {
     int c;
@@ -59,15 +65,91 @@ int main()
     {
     case 1:
         // Code para el Estudiante
+        int Valores[CASAS];
+        int menor;
+        menor = numeros[0];
+        /*
+        Establecimiento1 = Escuela
+        Establecimiento2 = Biiblioteca
+        Establecimiento3 = Papeleria
+        */
+        for(i=0;i<CASAS;i++)
+        {
+            a = Dijkstra(Casa(i),Establecimiento(1));
+            b = Dijkstra(Casa(i),Establecimiento(2));
+            c = Dijkstra(Casa(i),Establecimiento(3));
+            Valores[i]= a+b+c;
+        }
+        for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
+	    {
+	    	if (Valores[i] < menor) menor = Valores[i];
+    	}
         break;
     case 2:
         // Code para el Ama de casa
+        int Valores[CASAS];
+        int menor;
+        menor = numeros[0];
+        /*
+        Establecimiento1 = Super
+        Establecimiento2 = Carniceria
+        Establecimiento3 = Tienda
+        */
+        for(i=0;i<CASAS;i++)
+        {
+            a = Dijkstra(Casa(i),Establecimiento(1));
+            b = Dijkstra(Casa(i),Establecimiento(2));
+            c = Dijkstra(Casa(i),Establecimiento(3));
+            Valores[i]= a+b+c;
+        }
+        for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
+	    {
+	    	if (Valores[i] < menor) menor = Valores[i];
+    	}
         break;
     case 3:
         // Code para el Medico
+        int Valores[CASAS];
+        int menor;
+        menor = numeros[0];
+        /*
+        Establecimiento1 = Hospital
+        Establecimiento2 = Farmacia
+        Establecimiento3 = Super
+        */
+        for(i=0;i<CASAS;i++)
+        {
+            a = Dijkstra(Casa(i),Establecimiento(1));
+            b = Dijkstra(Casa(i),Establecimiento(2));
+            c = Dijkstra(Casa(i),Establecimiento(3));
+            Valores[i]= a+b+c;
+        }
+        for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
+	    {
+	    	if (Valores[i] < menor) menor = Valores[i];
+    	}
         break;
     case 4:
         // Code para el Deportista 
+        int Valores[CASAS];
+        int menor;
+        menor = numeros[0];
+        /*
+        Establecimiento1 = Gimnasio
+        Establecimiento2 = Carniceria 
+        Establecimiento3 = Nutriologo
+        */
+        for(i=0;i<CASAS;i++)
+        {
+            a = Dijkstra(Casa(i),Establecimiento(1));
+            b = Dijkstra(Casa(i),Establecimiento(2));
+            c = Dijkstra(Casa(i),Establecimiento(3));
+            Valores[i]= a+b+c;
+        }
+        for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
+	    {
+	    	if (Valores[i] < menor) menor = Valores[i];
+    	}
         break;
     
     default:

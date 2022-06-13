@@ -21,8 +21,12 @@ El dijkstra debe retornar el valor del peso mas corto
 #include <vector>
 #include <algorithm> // sort
 #include <string.h> // memset
+#include <Dijkstra.h>           //algDijkstra
+
 using namespace std;
 
+
+#define V 9;
 #define CASAS 10; //Define el número de nodos de tipo casa que usamos
 
 
@@ -54,6 +58,18 @@ Deportista:     Gimnasio > Carniceria > Nutriologo > Super > Tienda > Tortilleri
 
 int main()
 {
+    /* Let us create the example graph discussed above */
+    int graph[V][V] = { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
+                        { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
+                        { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
+                        { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
+                        { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
+                        { 0, 0, 4, 14, 10, 0, 2, 0, 0 },
+                        { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
+                        { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
+                        { 0, 0, 2, 0, 0, 0, 6, 7, 0 } 
+                        };
+
     int opcion;
     MenuOcupaciones();
 

@@ -70,7 +70,9 @@ int main()
                         { 0, 0, 2, 0, 0, 0, 6, 7, 0 } 
                         };
 
-    int opcion;
+                        printf("%i \n ",dijkstra(graph,0,8));
+
+    /*int opcion;
     MenuOcupaciones();
 
     printf("\33[0;32m  Elige la opcion que se acople mas a tus necesisdades:\t \33[0;0m");
@@ -88,7 +90,7 @@ int main()
         Establecimiento1 = Escuela
         Establecimiento2 = Biiblioteca
         Establecimiento3 = Papeleria
-        */
+        
         for(i=0;i<CASAS;i++)
         {
             a = Dijkstra(Casa(i),Establecimiento(1));
@@ -110,7 +112,7 @@ int main()
         Establecimiento1 = Super
         Establecimiento2 = Carniceria
         Establecimiento3 = Tienda
-        */
+        
         for(i=0;i<CASAS;i++)
         {
             a = Dijkstra(Casa(i),Establecimiento(1));
@@ -132,7 +134,7 @@ int main()
         Establecimiento1 = Hospital
         Establecimiento2 = Farmacia
         Establecimiento3 = Super
-        */
+        
         for(i=0;i<CASAS;i++)
         {
             a = Dijkstra(Casa(i),Establecimiento(1));
@@ -154,7 +156,7 @@ int main()
         Establecimiento1 = Gimnasio
         Establecimiento2 = Carniceria 
         Establecimiento3 = Nutriologo
-        */
+        
         for(i=0;i<CASAS;i++)
         {
             a = Dijkstra(Casa(i),Establecimiento(1));
@@ -173,6 +175,6 @@ int main()
         break;
     }
 
-    printf(" \n");
+    printf(" \n");*/
     return 0;
 }

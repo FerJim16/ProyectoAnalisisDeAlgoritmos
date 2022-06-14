@@ -12,9 +12,7 @@ Banderas:
 (X)Es establecimiento
 
 El dijkstra debe retornar el valor del peso mas corto
-
 */
-
 
 #include <iostream>
 #include <stdio.h>
@@ -26,7 +24,7 @@ El dijkstra debe retornar el valor del peso mas corto
 using namespace std;
 
 
-//#define V 9;
+//#define CASAS 8;
 //#define V 10; //Define el número de nodos de tipo casa que usamos
 
 
@@ -46,6 +44,18 @@ void MenuOcupaciones()//Imprime el menú de ocupaciones
     printf("     (4) Deportista      \33[0;0m\n\n");
 } 
 
+void pregunta()
+{
+    char xd;
+    printf("\n ¿Deseas buscar otra casa?   (s/n) \n");
+    scanf("%c",&xd);
+    if(xd=='n')
+    {
+        exit(1);
+    }
+}
+
+
 /*
 
 Prioridades: (usar solo las primeras 3 de cada uno)
@@ -58,19 +68,39 @@ Deportista:     Gimnasio > Carniceria > Nutriologo > Super > Tienda > Tortilleri
 
 int main()
 {
-    /* Let us create the example graph discussed above */
-    int graph[V][V] = { { 0, 4, 0, 0, 0, 0, 0, 8, 0 },
-                        { 4, 0, 8, 0, 0, 0, 0, 11, 0 },
-                        { 0, 8, 0, 7, 0, 4, 0, 0, 2 },
-                        { 0, 0, 7, 0, 9, 14, 0, 0, 0 },
-                        { 0, 0, 0, 9, 0, 10, 0, 0, 0 },
-                        { 0, 0, 4, 14, 10, 0, 2, 0, 0 },
-                        { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
-                        { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
-                        { 0, 0, 2, 0, 0, 0, 6, 7, 0 } 
-                        };
+    while(1){
 
-                        //printf("%i \n ",dijkstra(graph,0,8));
+        system("clear");
+    
+    int graph[V][V] =   {
+                            {0, 1, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5}, 
+                            {0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3}, 
+                            {0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0} 
+
+                        };
+        int Valores[V];
+        int a,b,c,CasaM,menor;
 
     int opcion;
     MenuOcupaciones();
@@ -83,105 +113,136 @@ int main()
     {
     case 1:
         // Code para el Estudiante
-        int Valores[V];
-        int menor, a, b, c;
-        //menor = Valores[0];
         /*
-        Establecimiento1 = Escuela
-        Establecimiento2 = Biiblioteca
-        Establecimiento3 = Papeleria
+        Establecimiento1 = Escuela      = 20
+        Establecimiento2 = Biiblioteca  = 14
+        Establecimiento3 = Papeleria    = 16
         dijkstra(graph,0,8)
         */
-        for(int i=0;i<V;i++)
+        for(int i=0 ; i<9 ; i++)
         {
-            a = dijkstra(graph,i,6);
-            b = dijkstra(graph,i,7);
-            c = dijkstra(graph,i,8);
+            a = dijkstra(graph,i,20);
+            b = dijkstra(graph,i,14);
+            c = dijkstra(graph,i,16);
             Valores[i]= a+b+c;
         }
         menor = Valores[0];
         for (int i = 1; i < /*sizeof(Valores) / sizeof(Valores[0])*/9; ++i)
 	    {
-	    	if (Valores[i] < menor) 
+	    	if (Valores[i] < menor)
+            {
                 menor = Valores[i];
+                CasaM=i;
+            }
     	}
-        
-        for (int i=0; i<V ; i++)
+        for (int i=0; i<9 ; i++)
             printf("%i \n",Valores[i]);
-        printf("\n %i",menor);
+            printf("\n Mas corto %i en la casa %i \n",menor,CasaM);
+            printf("\nTiene hasta la Escuela %i",dijkstra(graph,CasaM,20));
+            printf("\nTiene hasta la Biblioteca %i",dijkstra(graph,CasaM,17));
+            printf("\nTiene hasta la Papeleria %i",dijkstra(graph,CasaM,16));
+        pregunta();
         break;
-    /*case 2:
+    case 2:
         // Code para el Ama de casa
-        int Valores[V];
-        int menor;
-        menor = Valores[0];
         /*
-        Establecimiento1 = Super
-        Establecimiento2 = Carniceria
-        Establecimiento3 = Tienda
-        
-        for(i=0;i<V;i++)
+        Establecimiento1 = Super        = 17
+        Establecimiento2 = Carniceria   = 23
+        Establecimiento3 = Tienda       = 15
+        */
+        for(int i=0 ; i<9 ; i++)
         {
-            a = dijkstra(graph,"Casa i",Establecimiento(1));
-            b = dijkstra(graph,"Casa i",Establecimiento(2));
-            c = dijkstra(graph,"Casa i",Establecimiento(3));
+            a = dijkstra(graph,i,17);
+            b = dijkstra(graph,i,23);
+            c = dijkstra(graph,i,15);
             Valores[i]= a+b+c;
         }
-        for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
+        menor = Valores[0];
+        for (int i = 1; i < /*sizeof(Valores) / sizeof(Valores[0])*/9; ++i)
 	    {
-	    	if (Valores[i] < menor) menor = Valores[i];
+	    	if (Valores[i] < menor)
+            {
+                menor = Valores[i];
+                CasaM=i;
+            }
     	}
+        for (int i=0; i<9 ; i++)
+            printf("%i \n",Valores[i]);
+        printf("\n Mas corto %i en la casa %i \n",menor,CasaM);
+        printf("\nTiene hasta la Escuela %i",dijkstra(graph,CasaM,17));
+        printf("\nTiene hasta la Biblioteca %i",dijkstra(graph,CasaM,23));
+        printf("\nTiene hasta la Papeleria %i",dijkstra(graph,CasaM,15));
         break;
     case 3:
         // Code para el Medico
-        int Valores[V];
-        int menor;
-        menor = Valores[0];
-        /*
-        Establecimiento1 = Hospital
-        Establecimiento2 = Farmacia
-        Establecimiento3 = Super
         
-        for(i=0;i<V;i++)
+        
+        /*
+        Establecimiento1 = Hospital     = 18
+        Establecimiento2 = Farmacia     = 21
+        Establecimiento3 = Super        = 17
+        */
+        for(int i=0 ; i<9 ; i++)
         {
-            a = dijkstra(graph,"Casa i",Establecimiento(1));
-            b = dijkstra(graph,"Casa i",Establecimiento(2));
-            c = dijkstra(graph,"Casa i",Establecimiento(3));
+            a = dijkstra(graph,i,18);
+            b = dijkstra(graph,i,21);
+            c = dijkstra(graph,i,17);
             Valores[i]= a+b+c;
         }
-        for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
+        menor = Valores[0];
+        for (int i = 1; i < /*sizeof(Valores) / sizeof(Valores[0])*/9; ++i)
 	    {
-	    	if (Valores[i] < menor) menor = Valores[i];
+	    	if (Valores[i] < menor)
+            {
+                menor = Valores[i];
+                CasaM=i;
+            }
     	}
+        for (int i=0; i<9 ; i++)
+            printf("%i \n",Valores[i]);
+        printf("\n Mas corto %i en la casa %i \n",menor,CasaM);
+        printf("\nTiene hasta la Escuela %i",dijkstra(graph,CasaM,18));
+        printf("\nTiene hasta la Biblioteca %i",dijkstra(graph,CasaM,21));
+        printf("\nTiene hasta la Papeleria %i",dijkstra(graph,CasaM,17));
         break;
     case 4:
         // Code para el Deportista 
-        int Valores[V];
-        int menor;
-        menor = Valores[0];
-        /*
-        Establecimiento1 = Gimnasio
-        Establecimiento2 = Carniceria 
-        Establecimiento3 = Nutriologo
         
-        for(i=0;i<V;i++)
+        /*
+        Establecimiento1 = Gimnasio     = 13
+        Establecimiento2 = Carniceria   = 23
+        Establecimiento3 = Nutriologo   = 19
+        */
+        for(int i=0 ; i<9 ; i++)
         {
-            a = dijkstra(graph,"Casa i",Establecimiento(1));
-            b = dijkstra(graph,"Casa i",Establecimiento(2));
-            c = dijkstra(graph,"Casa i",Establecimiento(3));
+            a = dijkstra(graph,i,13);
+            b = dijkstra(graph,i,23);
+            c = dijkstra(graph,i,19);
             Valores[i]= a+b+c;
         }
-        for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
+        menor = Valores[0];
+        for (int i = 1; i < /*sizeof(Valores) / sizeof(Valores[0])*/9; ++i)
 	    {
-	    	if (Valores[i] < menor) menor = Valores[i];
+	    	if (Valores[i] < menor)
+            {
+                menor = Valores[i];
+                CasaM=i;
+            }
     	}
-        break;*/
+        for (int i=0; i<9 ; i++)
+            printf("%i \n",Valores[i]);
+        printf("\n Mas corto %i en la casa %i \n",menor,CasaM);
+        printf("\nTiene hasta la Escuela %i",dijkstra(graph,CasaM,13));
+        printf("\nTiene hasta la Biblioteca %i",dijkstra(graph,CasaM,23));
+        printf("\nTiene hasta la Papeleria %i",dijkstra(graph,CasaM,19));
+        break;
     
     default:
         printf("\33[0;31m Opcion no definida en el menu \33[0;0m \n");
         break;
+    
     }
-
+    }
     printf(" \n");
     return 0;
 }

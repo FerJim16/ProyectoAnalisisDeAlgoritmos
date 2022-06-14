@@ -21,13 +21,13 @@ El dijkstra debe retornar el valor del peso mas corto
 #include <vector>
 #include <algorithm> // sort
 #include <string.h> // memset
-#include <Dijkstra.h>           //algDijkstra
+#include "Dijkstra.h"           //algDijkstra
 
 using namespace std;
 
 
-#define V 9;
-#define CASAS 10; //Define el número de nodos de tipo casa que usamos
+//#define V 9;
+//#define V 10; //Define el número de nodos de tipo casa que usamos
 
 
 void fflushh(void)
@@ -70,9 +70,9 @@ int main()
                         { 0, 0, 2, 0, 0, 0, 6, 7, 0 } 
                         };
 
-                        printf("%i \n ",dijkstra(graph,0,8));
+                        //printf("%i \n ",dijkstra(graph,0,8));
 
-    /*int opcion;
+    int opcion;
     MenuOcupaciones();
 
     printf("\33[0;32m  Elige la opcion que se acople mas a tus necesisdades:\t \33[0;0m");
@@ -83,41 +83,48 @@ int main()
     {
     case 1:
         // Code para el Estudiante
-        int Valores[CASAS];
-        int menor;
-        menor = numeros[0];
+        int Valores[V];
+        int menor, a, b, c;
+        //menor = Valores[0];
         /*
         Establecimiento1 = Escuela
         Establecimiento2 = Biiblioteca
         Establecimiento3 = Papeleria
-        
-        for(i=0;i<CASAS;i++)
+        dijkstra(graph,0,8)
+        */
+        for(int i=0;i<V;i++)
         {
-            a = Dijkstra(Casa(i),Establecimiento(1));
-            b = Dijkstra(Casa(i),Establecimiento(2));
-            c = Dijkstra(Casa(i),Establecimiento(3));
+            a = dijkstra(graph,i,6);
+            b = dijkstra(graph,i,7);
+            c = dijkstra(graph,i,8);
             Valores[i]= a+b+c;
         }
-        for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
+        menor = Valores[0];
+        for (int i = 1; i < /*sizeof(Valores) / sizeof(Valores[0])*/9; ++i)
 	    {
-	    	if (Valores[i] < menor) menor = Valores[i];
+	    	if (Valores[i] < menor) 
+                menor = Valores[i];
     	}
+        
+        for (int i=0; i<V ; i++)
+            printf("%i \n",Valores[i]);
+        printf("\n %i",menor);
         break;
-    case 2:
+    /*case 2:
         // Code para el Ama de casa
-        int Valores[CASAS];
+        int Valores[V];
         int menor;
-        menor = numeros[0];
+        menor = Valores[0];
         /*
         Establecimiento1 = Super
         Establecimiento2 = Carniceria
         Establecimiento3 = Tienda
         
-        for(i=0;i<CASAS;i++)
+        for(i=0;i<V;i++)
         {
-            a = Dijkstra(Casa(i),Establecimiento(1));
-            b = Dijkstra(Casa(i),Establecimiento(2));
-            c = Dijkstra(Casa(i),Establecimiento(3));
+            a = dijkstra(graph,"Casa i",Establecimiento(1));
+            b = dijkstra(graph,"Casa i",Establecimiento(2));
+            c = dijkstra(graph,"Casa i",Establecimiento(3));
             Valores[i]= a+b+c;
         }
         for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
@@ -127,19 +134,19 @@ int main()
         break;
     case 3:
         // Code para el Medico
-        int Valores[CASAS];
+        int Valores[V];
         int menor;
-        menor = numeros[0];
+        menor = Valores[0];
         /*
         Establecimiento1 = Hospital
         Establecimiento2 = Farmacia
         Establecimiento3 = Super
         
-        for(i=0;i<CASAS;i++)
+        for(i=0;i<V;i++)
         {
-            a = Dijkstra(Casa(i),Establecimiento(1));
-            b = Dijkstra(Casa(i),Establecimiento(2));
-            c = Dijkstra(Casa(i),Establecimiento(3));
+            a = dijkstra(graph,"Casa i",Establecimiento(1));
+            b = dijkstra(graph,"Casa i",Establecimiento(2));
+            c = dijkstra(graph,"Casa i",Establecimiento(3));
             Valores[i]= a+b+c;
         }
         for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
@@ -149,32 +156,32 @@ int main()
         break;
     case 4:
         // Code para el Deportista 
-        int Valores[CASAS];
+        int Valores[V];
         int menor;
-        menor = numeros[0];
+        menor = Valores[0];
         /*
         Establecimiento1 = Gimnasio
         Establecimiento2 = Carniceria 
         Establecimiento3 = Nutriologo
         
-        for(i=0;i<CASAS;i++)
+        for(i=0;i<V;i++)
         {
-            a = Dijkstra(Casa(i),Establecimiento(1));
-            b = Dijkstra(Casa(i),Establecimiento(2));
-            c = Dijkstra(Casa(i),Establecimiento(3));
+            a = dijkstra(graph,"Casa i",Establecimiento(1));
+            b = dijkstra(graph,"Casa i",Establecimiento(2));
+            c = dijkstra(graph,"Casa i",Establecimiento(3));
             Valores[i]= a+b+c;
         }
         for (int i = 1; i < sizeof(Valores) / sizeof(Valores[0]); ++i)
 	    {
 	    	if (Valores[i] < menor) menor = Valores[i];
     	}
-        break;
+        break;*/
     
     default:
         printf("\33[0;31m Opcion no definida en el menu \33[0;0m \n");
         break;
     }
 
-    printf(" \n");*/
+    printf(" \n");
     return 0;
 }

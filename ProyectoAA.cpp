@@ -156,7 +156,7 @@ int main()
             a = dijkstra(graph,i+15,8);
             b = dijkstra(graph,i+15,2);
             c = dijkstra(graph,i+15,4);
-            Valores[i]= (a+b+c)/3;          //Almacena el promedio de la casa hacia sus 3 prioridades
+            Valores[i]= (a+b+c);///3;          //Almacena el promedio de la casa hacia sus 3 prioridades
             for(int k=0;k<CASAS;k++)
                 if (i+15 == ocupados[k])    //Valida que no se encuentre marcada como "APARTADA"
                 {                           //Si esta apartada, se coloca un valor alto para evitar que se elija como 
@@ -164,7 +164,7 @@ int main()
                 }
         }
         menor = Valores[0];
-        for (int i = 1; i < CASAS; ++i)     //Busca el valor menor almacenado en el array VALORES
+        for (int i = 0; i < CASAS; ++i)     //Busca el valor menor almacenado en el array VALORES
 	    {
 	    	if (Valores[i] < menor)
             {
@@ -178,6 +178,8 @@ int main()
                 system("pause");
                 exit(1);
             }
+            for(int i=0;i<9;i++)
+                printf("%i\n",Valores[i]);
             printf("\33[0;46m                                                                                \n");
             printf("  La mejor casa disponible para ti es la numero %i con recorrido promedio de %im  \n",CasaM-14,menor);
             printf("Recorre de la casa %i  hasta la Escuela:         %im                             ",CasaM-14,dijkstra(graph,CasaM,8));
@@ -203,7 +205,7 @@ int main()
             a = dijkstra(graph,i+15,5);
             b = dijkstra(graph,i+15,0);
             c = dijkstra(graph,i+15,3);
-            Valores[i]= (a+b+c)/3;
+            Valores[i]= (a+b+c);///3;
             for(int k=0;k<CASAS;k++)
                 if (i+15 == ocupados[k])
                 {
@@ -250,7 +252,7 @@ int main()
             a = dijkstra(graph,i+15,6);
             b = dijkstra(graph,i+15,9);
             c = dijkstra(graph,i+15,5);
-            Valores[i]= (a+b+c)/3;
+            Valores[i]= (a+b+c);///3;
             for(int k=0;k<CASAS;k++)
                 if (i+15 == ocupados[k])
                 {
@@ -297,7 +299,7 @@ int main()
             a = dijkstra(graph,i+15,1);
             b = dijkstra(graph,i+15,0);
             c = dijkstra(graph,i+15,7);
-            Valores[i]= (a+b+c)/3;
+            Valores[i]= (a+b+c);///3;
             for(int k=0;k<CASAS;k++)
                 if (i+15 == ocupados[k])
                 {

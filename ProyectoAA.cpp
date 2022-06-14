@@ -1,21 +1,4 @@
 /*
-PRUEBA UBUNTU
-Primero definir las prioridades para un gready (como mochila)
-
-
-Generar banderas para saber si se trata de casa o 
-establecimiento, en caso de ser establecimiento, 
-saber cual es y si esta disponible
-Banderas:
-(X)Esta ocupada ya
-(X)Es casa
-(X)Es establecimiento
-
-El dijkstra debe retornar el valor del peso mas corto
-*/
-
-/*
-
 Lista de Nodos:
 Establecimientos
 0 : Carniceria
@@ -45,18 +28,17 @@ matriz de adyacencia)
 #include <iostream>
 #include <stdio.h>
 #include <vector>
-#include <algorithm> // sort
-#include <string.h> // memset
-#include "Dijkstra.h"           //algDijkstra
+#include <algorithm> 
+#include <string.h> 
+#include "Dijkstra.h"//algDijkstra
 
 using namespace std;
 
 
-#define CASAS 9
-//#define V 10; //Define el número de nodos de tipo casa que usamos
+#define CASAS 9 //Define el número de casas que tenemos
 
 
-void fflushh(void)
+void fflushh(void) //Funcion para limpiar el buffer (porque en ubuntu no existe como tal)
 {
     int c;
     do {
@@ -75,18 +57,19 @@ void MenuOcupaciones()//Imprime el menú de ocupaciones
     printf("                                                                                \33[0;0m\n\n");
 } 
 
-void pregunta2()
+void pregunta2() //Funcion que pregunta si se repite el programa
 {
     char xd;
     printf("\n\n\n ¿Deseas buscar otra casa?   (s/n) :   ");
     scanf("%c",&xd);
     if(xd=='n')
     {
+        system("clear");
         exit(1);
     }
 }
 
-int pregunta1()
+int pregunta1() //Funcion que pregunta si se va a apartar la casa
 {
     char Apartado;
     printf("\n\n\n ¿Deseas apartar esta casa?   (s/n) :  ");
@@ -115,13 +98,13 @@ Deportista:     Gimnasio > Carniceria > Nutriologo > Super > Tienda > Tortilleri
 
 int main()
 {
-    int ocupados[CASAS];
-    int ND=0;
+    int ocupados[CASAS];//Array que almacena las casas marcadas como "APARTADAS"
+    int ND=0;           //Variable de contador para el array de ocupadas
     while(1){
 
         system("clear");
     
-    int graph[V][V] =   {
+    int graph[V][V] =   {           //MATRIZ DE ADYACENCIA DEL GRAFO DEFINIDO
                             {0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
                             {3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
                             {0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 
@@ -148,9 +131,8 @@ int main()
                             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 1, 0} 
 
                         };
-        int Valores[V];
-        //int ocupados[CASAS];
-        int a,b,c,j=0,CasaM,menor;
+    int Valores[V];//Array para guardar las distancias mínimas promedio de cada casa
+    int a,b,c,j=0,CasaM,menor;
 
     int opcion;
     MenuOcupaciones();
@@ -164,25 +146,25 @@ int main()
     switch (opcion)
     {
     case 1:
-        // Code para el Estudiante
+                // Caso para el Estudiante
         //Establecimiento1 = Escuela      = 8
         //Establecimiento2 = Biiblioteca  = 2
         //Establecimiento3 = Papeleria    = 4
         
-        for(int i=0 ; i<CASAS ; i++)
+        for(int i=0 ; i<CASAS ; i++)        //Recorre todas las casas para calcular las distancias de cada una
         {
             a = dijkstra(graph,i+15,8);
             b = dijkstra(graph,i+15,2);
             c = dijkstra(graph,i+15,4);
-            Valores[i]= (a+b+c)/3;
+            Valores[i]= (a+b+c)/3;          //Almacena el promedio de la casa hacia sus 3 prioridades
             for(int k=0;k<CASAS;k++)
-                if (i+15 == ocupados[k])
-                {
-                    Valores[i]=50714;
+                if (i+15 == ocupados[k])    //Valida que no se encuentre marcada como "APARTADA"
+                {                           //Si esta apartada, se coloca un valor alto para evitar que se elija como 
+                    Valores[i]=50714;       //el valor minimo
                 }
         }
         menor = Valores[0];
-        for (int i = 1; i < CASAS; ++i)
+        for (int i = 1; i < CASAS; ++i)     //Busca el valor menor almacenado en el array VALORES
 	    {
 	    	if (Valores[i] < menor)
             {
@@ -190,6 +172,12 @@ int main()
                 CasaM=i+15;
             }
     	}
+        if(menor == 50714)                  //Si ya todos tienen este valor, se va a elegir como el menor, por lo que significa
+            {                               // que ya no hay casas disponibles
+                printf("Lo sentimos, ya no hay mas casas disponibles");
+                system("pause");
+                exit(1);
+            }
             printf("\33[0;46m                                                                                \n");
             printf("  La mejor casa disponible para ti es la numero %i con recorrido promedio de %im  \n",CasaM-14,menor);
             printf("Recorre de la casa %i  hasta la Escuela:         %im                             ",CasaM-14,dijkstra(graph,CasaM,8));
@@ -198,7 +186,7 @@ int main()
             printf("\n                                                                                \33[0;0m\n\n");
                 if(pregunta1()==1)
                 {
-                    ocupados[ND]=CasaM;
+                    ocupados[ND]=CasaM; //Almcena el numero de casa en la lista de casas ocupadas
                     ND=ND+1;
                     printf("\33[0;42m     Se aparto la casa #%i     \33[0;0m",CasaM);
                 }
@@ -206,7 +194,7 @@ int main()
                 pregunta2();
         break;
     case 2:
-        // Code para el Ama de casa
+                // Caso para el Ama de casa
         //Establecimiento1 = Super        = 5
         //Establecimiento2 = Carniceria   = 0
         //Establecimiento3 = Tienda       = 3
@@ -231,6 +219,12 @@ int main()
                 CasaM=i+15;
             }
     	}
+        if(menor == 50714)                  //Si ya todos tienen este valor, se va a elegir como el menor, por lo que significa
+            {                               // que ya no hay casas disponibles
+                printf("Lo sentimos, ya no hay mas casas disponibles");
+                system("pause");
+                exit(1);
+            }
             printf("\33[0;46m                                                                                \n");
             printf("  La mejor casa disponible para ti es la numero %i con recorrido promedio de %im \n",CasaM-14,menor);
             printf("Recorre de la casa %i  hasta el SuperMercado:     %im                            ",CasaM-14,dijkstra(graph,CasaM,5));
@@ -247,7 +241,7 @@ int main()
                 pregunta2();
         break;
     case 3:
-        // Code para el Medico
+                // Caso para el Medico
         //Establecimiento1 = Hospital     = 6
         //Establecimiento2 = Farmacia     = 9
         //Establecimiento3 = Super        = 5
@@ -272,6 +266,12 @@ int main()
                 CasaM=i+15;
             }
     	}
+        if(menor == 50714)                  //Si ya todos tienen este valor, se va a elegir como el menor, por lo que significa
+            {                               // que ya no hay casas disponibles
+                printf("Lo sentimos, ya no hay mas casas disponibles");
+                system("pause");
+                exit(1);
+            }
             printf("\33[0;46m                                                                                \n");
             printf("  La mejor casa disponible para ti es la numero %i con recorrido promedio de %im \n",CasaM-14,menor);
             printf("Recorre de la casa %i  hasta el Hospital:         %im                             ",CasaM-14,dijkstra(graph,CasaM,6));
@@ -288,7 +288,7 @@ int main()
                 pregunta2();
         break;
     case 4:
-        // Code para el Deportista 
+                // Caso para el Deportista 
         //Establecimiento1 = Gimnasio     = 1
         //Establecimiento2 = Carniceria   = 0
         //Establecimiento3 = Nutriologo   = 7
@@ -313,6 +313,12 @@ int main()
                 CasaM=i+15;
             }
     	}
+        if(menor == 50714)                  //Si ya todos tienen este valor, se va a elegir como el menor, por lo que significa
+            {                               // que ya no hay casas disponibles
+                printf("Lo sentimos, ya no hay mas casas disponibles");
+                system("pause");
+                exit(1);
+            }
             printf("\33[0;46m                                                                                \n");
             printf("  La mejor casa disponible para ti es la numero %i con recorrido promedio de %im  \n",CasaM-14,menor);
             printf("Recorre de la casa %i  hasta el Gimnasio:         %im                             ",CasaM-14,dijkstra(graph,CasaM,1));
@@ -334,6 +340,5 @@ int main()
         break;
     }
     }
-    printf(" %i \n", ocupados[0]);
     return 0;
 }

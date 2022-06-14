@@ -178,8 +178,6 @@ int main()
                 system("pause");
                 exit(1);
             }
-            for(int i=0;i<9;i++)
-                printf("%i\n",Valores[i]);
             printf("\33[0;46m                                                                                \n");
             printf("  La mejor casa disponible para ti es la numero %i con recorrido promedio de %im  \n",CasaM-14,menor);
             printf("Recorre de la casa %i  hasta la Escuela:         %im                             ",CasaM-14,dijkstra(graph,CasaM,8));
